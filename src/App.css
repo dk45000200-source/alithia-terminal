@@ -1,0 +1,308 @@
+/* واجهة طرفية سوداء كلاسيكية - ض */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', 'Courier New', monospace;
+}
+
+body {
+  background: #000;
+  color: #0f0;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.app {
+  background: #000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* الطرفية */
+.terminal {
+  flex: 1;
+  background: #000;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* الهيدر */
+.terminal-header {
+  background: #111;
+  border-bottom: 1px solid #0f0;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  color: #0f0;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.blink {
+  color: #f00;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.header-status {
+  color: #0f0;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-dot {
+  color: #0f0;
+}
+
+/* منطقة الإخراج */
+.output {
+  flex: 1;
+  padding: 8px 10px;
+  overflow-y: auto;
+  color: #0f0;
+  font-size: 13px;
+  line-height: 1.3;
+  white-space: pre-wrap;
+  word-break: break-word;
+  direction: rtl;
+  text-align: right;
+}
+
+.line {
+  margin-bottom: 1px;
+  font-family: 'Courier New', monospace;
+}
+
+/* حقل الإدخال */
+.input-container {
+  background: #111;
+  border-top: 1px solid #333;
+  padding: 8px 10px;
+}
+
+.prompt-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  direction: rtl;
+}
+
+.prompt-char {
+  color: #0f0;
+  font-weight: bold;
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.command-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #0f0;
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  outline: none;
+  caret-color: #0f0;
+  direction: rtl;
+  text-align: right;
+}
+
+.command-input::placeholder {
+  color: #555;
+  font-style: italic;
+}
+
+/* الأوامر السريعة */
+.quick-commands {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  direction: rtl;
+}
+
+.quick-btn {
+  background: #222;
+  color: #0f0;
+  border: 1px solid #333;
+  padding: 3px 6px;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-family: inherit;
+  direction: rtl;
+}
+
+.quick-btn:hover {
+  background: #333;
+  border-color: #0f0;
+}
+
+/* شريط المساعدة */
+.help-bar {
+  display: flex;
+  gap: 12px;
+  padding-top: 6px;
+  border-top: 1px solid #222;
+  color: #888;
+  font-size: 10px;
+  flex-wrap: wrap;
+  direction: rtl;
+}
+
+.help-item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.key {
+  background: #222;
+  color: #0f0;
+  padding: 1px 3px;
+  border-radius: 2px;
+  border: 1px solid #333;
+  font-size: 9px;
+  font-family: 'Courier New', monospace;
+}
+
+/* الفوتر */
+.footer {
+  background: #111;
+  border-top: 1px solid #333;
+  padding: 4px 10px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  color: #666;
+  font-size: 10px;
+  flex-wrap: wrap;
+  direction: rtl;
+}
+
+.footer-item {
+  white-space: nowrap;
+}
+
+.sep {
+  color: #333;
+}
+
+/* التمرير */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* إصلاح النصوص العربية */
+@font-face {
+  font-family: 'Arabic Terminal';
+  src: local('Courier New'), local('Monaco');
+  unicode-range: U+0600-06FF;
+}
+
+/* تحسين العرض على شاشات صغيرة */
+@media (max-width: 768px) {
+  .terminal-header {
+    padding: 5px 8px;
+  }
+  
+  .header-title {
+    font-size: 11px;
+  }
+  
+  .output {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+  }
+  
+  .sep {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-commands {
+    gap: 4px;
+  }
+  
+  .quick-btn {
+    padding: 2px 4px;
+    font-size: 10px;
+  }
+  
+  .help-bar {
+    gap: 8px;
+    font-size: 9px;
+  }
+  
+  .key {
+    font-size: 8px;
+    padding: 1px 2px;
+  }
+}
+
+/* تحسين مظهر النقطتين */
+.prompt-char {
+  color: #0f0;
+  font-weight: bold;
+  margin-left: 8px;
+  font-size: 16px;
+  font-family: 'Courier New', monospace;
+}
+
+/* تحسين العنوان */
+.header-title span:last-child {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+/* تأكيد ظهور : بشكل صحيح */
+.prompt-symbol {
+  color: #0f0;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+  font-family: 'Courier New', monospace;
+}
+
+/* ... باقي التنسيقات الموجودة مسبقاً */
